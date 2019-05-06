@@ -22,15 +22,11 @@ stream = p.open(format=FORMAT,
                 input=True,
                 frames_per_buffer=CHUNK)
 
-print("* recording")
-
 frames = np.zeros((SAMPLES*CHUNK), dtype=np.uint8)
 
 for i in range(0, int(SAMPLES)):
     data = stream.read(CHUNK)
     frames[i*CHUNK:(i+1)*CHUNK] = np.frombuffer(data, dtype=np.uint8)[0:1200]
-
-print("* done recording")
 
 stream.stop_stream()
 stream.close()
